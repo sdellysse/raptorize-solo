@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            html {
+                font-family: arial, helvetica;
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore.js"></script>
+        <script src="raptorize.js"></script>
+        <script>
+            jQuery(function ($) {
+                $("#raptorize-now").bind("click", function () {
+                    Raptorize.run();
+                });
+
+                $("#raptorize-later").bind("click", function () {
+                    $("#raptorize-later").hide();
+                    $("#wait-for-it").show();
+                    setTimeout(function () {
+                        Raptorize.run();
+                        $("#wait-for-it").hide();
+                        $("#raptorize-later").show();
+                    }, 5*1000);
+                });
+
+                $("#raptorize-konami-code-on").bind("click", function () {
+                    Raptorize.bindKonamiCode();
+                    $("#raptorize-konami-code-unbound").hide();
+                    $("#raptorize-konami-code-bound").show();
+                });
+
+                $("#raptorize-konami-code-off").bind("click", function () {
+                    Raptorize.unbindKonamiCode();
+                    $("#raptorize-konami-code-bound").hide();
+                    $("#raptorize-konami-code-unbound").show();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Raptorize Solo</h1>
+        <p>
+            <button id="raptorize-now">Raptorize now</button>
+        </p>
+        <p>
+            <button id="raptorize-later">Raptorize in five seconds</button>
+            <span id="wait-for-it" style="display: none;">Wait for it...</span>
+        </p>
+        <p class="raptorize-konami-code-unbound">
+            <button id="raptorize-konami-code-on">Toggle</button>
+            <span>Konami code is unbound.</span>
+        </p>
+        <p class="raptorize-konami-code-bound" style="display: none;">
+            <button id="raptorize-konami-code-off">Toggle</button>
+            <span>Konami code is bound. Press UUDDLRLRBA to activate.</span>
+        </p>
+    </body>
+</html>
