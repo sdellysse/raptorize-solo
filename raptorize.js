@@ -148,14 +148,10 @@
             this.rootNode = $("body");
         }
 
-        if (this.audioSupported === undefined) {
-            this.audioSupported = ($.browser.mozilla && $.browser.version.substr(0, 5) >= "1.9.2") || $.browser.webkit;
-        }
-
         this.imageNode = $(template(this.imageTmpl, { data: this })).get(0);
         $(this.rootNode).append(this.imageNode);
 
-        if (this.audioSupported) {
+        if (this.audioSupported()) {
             this.audioNode = $(template(this.audioTmpl, { data: this })).get(0);
             $(this.rootNode).append(this.audioNode);
         }
