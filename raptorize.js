@@ -1,4 +1,4 @@
-/*jslint nomen: true, browser: true */
+/*jslint nomen: true, browser: true, indent: 4 */
 
 (function (window) {
     "use strict";
