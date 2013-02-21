@@ -1,4 +1,6 @@
-(function (window, undefined) {
+/*jslint nomen: true, browser: true */
+
+(function (window) {
     "use strict";
     var Raptorize, original;
 
@@ -59,7 +61,7 @@
             Object = window.Object;
             for (type in typeMap) {
                 if (Object.prototype.hasOwnProperty.call(typeMap, type)) {
-                    if(!!(audio.canPlayType && audio.canPlayType(typeMap[type]).replace(/no/, ''))) {
+                    if (!!(audio.canPlayType && audio.canPlayType(typeMap[type]).replace(/no/, ''))) {
                         return type;
                     }
                 }
@@ -83,7 +85,6 @@
         konamiKeys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65].join(",");
         keysPressed = [];
 
-        alert("binding");
         $(window.document).bind("keydown.RaptorizeKonamiCode", bind(function (event) {
             keysPressed.push(event.keyCode);
             if (keysPressed.join(",").indexOf(konamiKeys) !== -1) {
@@ -233,4 +234,4 @@
     };
 
     window.Raptorize = Raptorize;
-})(window);
+}(window));
